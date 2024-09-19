@@ -1,21 +1,30 @@
 from datetime import datetime
 from typing import Tuple
-from pydantic import BaseModel, EmailStr, validator, PositiveFloat, PositiveInt
+from pydantic import BaseModel, EmailStr, PositiveFloat, PositiveInt
 from enum import Enum
 
 class ProdutoEnum(str, Enum):
-    produto1 = "Zapflow com Gemini"
-    produto2 = "Zapflow com ChatGPT"
-    produto3 = "Zapflow com Lhama"
-
+    produto1 = "ZapFlow com Gemini"
+    produto2 = "ZapFlow com chatGPT"
+    produto3 = "ZapFlow com Llama3.0"
 
 class Vendas(BaseModel):
-    email: EmailStr
+    """
+    Modelo de dados para as vendas.
+
+    Args:
+        email (EmailStr): email do comprador
+        data (datetime): data da compra
+        valor (PositiveFloat): valor da compra
+        produto (PositiveInt): nome do produto
+        quantidade (PositiveInt): quantidade de produtos
+        produto (ProdutoEnum): categoria do produto
+    """
+
+    email: EmailStr # kaio =! kaio@gmai.com
     data: datetime
     valor: PositiveFloat
     quantidade: PositiveInt
     produto: ProdutoEnum
 
-    # @validator('produto')
-    # def categoria_deve_estar_no_enum(cls,v):
-    #     return v
+    
